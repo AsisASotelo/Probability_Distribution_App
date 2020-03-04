@@ -12,10 +12,10 @@ MAKEFILE      = Makefile
 
 CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.10 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -O2 -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.10 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I. -I. -I/Users/marki/anaconda3/include/qt -I/Users/marki/anaconda3/include/qt/QtGui -I/Users/marki/anaconda3/include/qt/QtCore -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Users/marki/anaconda3/mkspecs/macx-clang
+INCPATH       = -I. -I. -I/Users/marki/anaconda3/include/qt -I/Users/marki/anaconda3/include/qt/QtWidgets -I/Users/marki/anaconda3/include/qt/QtGui -I/Users/marki/anaconda3/include/qt/QtCore -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Users/marki/anaconda3/mkspecs/macx-clang
 QMAKE         = /Users/marki/anaconda3/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -38,7 +38,7 @@ DISTNAME      = dist_app_V11.0.0
 DISTDIR = /Users/marki/Desktop/UNIVERSAL_DRIVE/Github/Probability_Distribution_App/dist_app_V1/.tmp/dist_app_V11.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.10 -Wl,-rpath,@executable_path/Frameworks -Wl,-rpath,/Users/marki/anaconda3/lib
-LIBS          = $(SUBLIBS) -L/Users/marki/anaconda3/lib -lQt5Gui -framework DiskArbitration -framework IOKit -lQt5Core -framework OpenGL -framework AGL 
+LIBS          = $(SUBLIBS) -L/Users/marki/anaconda3/lib -lQt5Widgets -framework DiskArbitration -framework IOKit -lQt5Gui -lQt5Core -framework OpenGL -framework AGL 
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
 SED           = sed
@@ -210,6 +210,7 @@ DIST          = /Users/marki/anaconda3/mkspecs/features/spec_pre.prf \
 		/Users/marki/anaconda3/mkspecs/features/qt_config.prf \
 		/Users/marki/anaconda3/mkspecs/macx-clang/qmake.conf \
 		/Users/marki/anaconda3/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Users/marki/anaconda3/mkspecs/features/exclusive_builds.prf \
 		/Users/marki/anaconda3/mkspecs/features/mac/sdk.prf \
 		/Users/marki/anaconda3/mkspecs/features/toolchain.prf \
@@ -225,6 +226,7 @@ DIST          = /Users/marki/anaconda3/mkspecs/features/spec_pre.prf \
 		/Users/marki/anaconda3/mkspecs/features/resources.prf \
 		/Users/marki/anaconda3/mkspecs/features/moc.prf \
 		/Users/marki/anaconda3/mkspecs/features/unix/opengl.prf \
+		/Users/marki/anaconda3/mkspecs/features/uic.prf \
 		/Users/marki/anaconda3/mkspecs/features/unix/thread.prf \
 		/Users/marki/anaconda3/mkspecs/features/qmake_use.prf \
 		/Users/marki/anaconda3/mkspecs/features/file_copies.prf \
@@ -410,6 +412,7 @@ Makefile: dist_app_V1.pro /Users/marki/anaconda3/mkspecs/macx-clang/qmake.conf /
 		/Users/marki/anaconda3/mkspecs/features/qt_config.prf \
 		/Users/marki/anaconda3/mkspecs/macx-clang/qmake.conf \
 		/Users/marki/anaconda3/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Users/marki/anaconda3/mkspecs/features/exclusive_builds.prf \
 		/Users/marki/anaconda3/mkspecs/features/mac/sdk.prf \
 		/Users/marki/anaconda3/mkspecs/features/toolchain.prf \
@@ -425,6 +428,7 @@ Makefile: dist_app_V1.pro /Users/marki/anaconda3/mkspecs/macx-clang/qmake.conf /
 		/Users/marki/anaconda3/mkspecs/features/resources.prf \
 		/Users/marki/anaconda3/mkspecs/features/moc.prf \
 		/Users/marki/anaconda3/mkspecs/features/unix/opengl.prf \
+		/Users/marki/anaconda3/mkspecs/features/uic.prf \
 		/Users/marki/anaconda3/mkspecs/features/unix/thread.prf \
 		/Users/marki/anaconda3/mkspecs/features/qmake_use.prf \
 		/Users/marki/anaconda3/mkspecs/features/file_copies.prf \
@@ -435,6 +439,7 @@ Makefile: dist_app_V1.pro /Users/marki/anaconda3/mkspecs/macx-clang/qmake.conf /
 		/Users/marki/anaconda3/mkspecs/features/yacc.prf \
 		/Users/marki/anaconda3/mkspecs/features/lex.prf \
 		dist_app_V1.pro \
+		/Users/marki/anaconda3/lib/libQt5Widgets.prl \
 		/Users/marki/anaconda3/lib/libQt5Gui.prl \
 		/Users/marki/anaconda3/lib/libQt5Core.prl
 	$(QMAKE) -o Makefile dist_app_V1.pro
@@ -596,6 +601,7 @@ Makefile: dist_app_V1.pro /Users/marki/anaconda3/mkspecs/macx-clang/qmake.conf /
 /Users/marki/anaconda3/mkspecs/features/qt_config.prf:
 /Users/marki/anaconda3/mkspecs/macx-clang/qmake.conf:
 /Users/marki/anaconda3/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /Users/marki/anaconda3/mkspecs/features/exclusive_builds.prf:
 /Users/marki/anaconda3/mkspecs/features/mac/sdk.prf:
 /Users/marki/anaconda3/mkspecs/features/toolchain.prf:
@@ -611,6 +617,7 @@ Makefile: dist_app_V1.pro /Users/marki/anaconda3/mkspecs/macx-clang/qmake.conf /
 /Users/marki/anaconda3/mkspecs/features/resources.prf:
 /Users/marki/anaconda3/mkspecs/features/moc.prf:
 /Users/marki/anaconda3/mkspecs/features/unix/opengl.prf:
+/Users/marki/anaconda3/mkspecs/features/uic.prf:
 /Users/marki/anaconda3/mkspecs/features/unix/thread.prf:
 /Users/marki/anaconda3/mkspecs/features/qmake_use.prf:
 /Users/marki/anaconda3/mkspecs/features/file_copies.prf:
@@ -621,6 +628,7 @@ Makefile: dist_app_V1.pro /Users/marki/anaconda3/mkspecs/macx-clang/qmake.conf /
 /Users/marki/anaconda3/mkspecs/features/yacc.prf:
 /Users/marki/anaconda3/mkspecs/features/lex.prf:
 dist_app_V1.pro:
+/Users/marki/anaconda3/lib/libQt5Widgets.prl:
 /Users/marki/anaconda3/lib/libQt5Gui.prl:
 /Users/marki/anaconda3/lib/libQt5Core.prl:
 qmake: FORCE
@@ -663,6 +671,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r dist_app_V1.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -688,6 +697,8 @@ compiler_moc_header_make_all:
 compiler_moc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
+compiler_uic_make_all:
+compiler_uic_clean:
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
 compiler_yacc_decl_make_all:
@@ -700,7 +711,149 @@ compiler_clean: compiler_moc_predefs_clean
 
 ####### Compile
 
-dist_app_V1.o: dist_app_V1.cpp 
+dist_app_V1.o: dist_app_V1.cpp /Users/marki/anaconda3/include/qt/QtWidgets/QApplication \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qapplication.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qtwidgetsglobal.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qtguiglobal.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qglobal.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qconfig-bootstrapped.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qconfig.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qtcore-config.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qsystemdetection.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qprocessordetection.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qcompilerdetection.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qtypeinfo.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qsysinfo.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qlogging.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qflags.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qatomic.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qbasicatomic.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qatomic_bootstrap.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qgenericatomic.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qatomic_cxx11.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qatomic_msvc.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qglobalstatic.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qmutex.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qnumeric.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qversiontagging.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qtgui-config.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qtwidgets-config.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qcoreapplication.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qstring.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qchar.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qbytearray.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qrefcount.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qnamespace.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qarraydata.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qstringbuilder.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qobject.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qobjectdefs.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qobjectdefs_impl.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qlist.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qalgorithms.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qiterator.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qhashfunctions.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qpair.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qbytearraylist.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qstringlist.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qregexp.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qstringmatcher.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qcoreevent.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qscopedpointer.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qmetatype.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qvarlengtharray.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qcontainerfwd.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qobject_impl.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qeventloop.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qwindowdefs.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qwindowdefs_win.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qpoint.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qsize.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qcursor.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qdesktopwidget.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qwidget.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qmargins.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qpaintdevice.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qrect.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qpalette.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qcolor.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qrgb.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qrgba64.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qbrush.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qvector.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qmatrix.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qpolygon.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qregion.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qdatastream.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qiodevice.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qline.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qtransform.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qpainterpath.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qimage.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qpixelformat.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qpixmap.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qsharedpointer.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qshareddata.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qhash.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qsharedpointer_impl.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qfont.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qfontmetrics.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qfontinfo.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qsizepolicy.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qkeysequence.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qevent.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qvariant.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qmap.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qdebug.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qtextstream.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qlocale.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qset.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qcontiguouscache.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qurl.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qurlquery.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qfile.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qfiledevice.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qvector2d.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qtouchdevice.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qguiapplication.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qinputmethod.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/QPushButton \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qpushbutton.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qabstractbutton.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qicon.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/QGridLayout \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qgridlayout.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qlayout.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qlayoutitem.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qboxlayout.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/QLineEdit \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qlineedit.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qframe.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qtextcursor.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qtextformat.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qpen.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qtextoption.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/QDateTimeEdit \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qdatetimeedit.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qdatetime.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qabstractspinbox.h \
+		/Users/marki/anaconda3/include/qt/QtGui/qvalidator.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qregularexpression.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/QSpinBox \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qspinbox.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/QComboBox \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qcombobox.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qabstractitemdelegate.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qstyleoption.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qslider.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qabstractslider.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qstyle.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qtabbar.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qtabwidget.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qrubberband.h \
+		/Users/marki/anaconda3/include/qt/QtCore/qabstractitemmodel.h \
+		/Users/marki/anaconda3/include/qt/QtWidgets/QLabel \
+		/Users/marki/anaconda3/include/qt/QtWidgets/qlabel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dist_app_V1.o dist_app_V1.cpp
 
 ####### Install
